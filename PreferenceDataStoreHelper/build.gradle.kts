@@ -9,7 +9,6 @@ android {
 
     defaultConfig {
         minSdk = 21
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -37,7 +36,6 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     api(libs.androidx.datastore.preferences)
     lintChecks(libs.cdnamingconventions)
-
 
 
     //test implementation

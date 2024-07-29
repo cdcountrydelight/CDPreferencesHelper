@@ -1,6 +1,7 @@
 package com.countrydelight.preferencedatastorehelper
 
 import android.content.Context
+import androidx.annotation.Keep
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
@@ -9,6 +10,10 @@ import com.countrydelight.preferencedatastorehelper.utils.PreferenceFunctionHelp
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
+
+/**
+ * Implementation of the IDataStoreManager interface for managing preferences using DataStore.
+ */
 class PreferenceDataStoreImpl(
     context: Context,
     preferenceName: String,
@@ -80,5 +85,4 @@ class PreferenceDataStoreImpl(
             preferences.clear()
         }
     } != null  // Return true if the operation was successful, false otherwise
-
 }
