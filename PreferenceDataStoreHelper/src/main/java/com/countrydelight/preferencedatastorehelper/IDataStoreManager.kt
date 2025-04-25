@@ -26,6 +26,15 @@ internal interface IDataStoreManager {
      */
     suspend fun <T> put(key: Preferences.Key<T>, value: T): Boolean
 
+
+    /**
+     * Saves multiple key-value pairs to the DataStore in a single transaction.
+     *
+     * @param pairs A vararg of key-value preference pairs to be saved.
+     * @return True if the operation was successful, false otherwise.
+     */
+    suspend fun putAll(vararg pairs: Preferences.Pair<*>): Boolean
+
     /**
      * Removes a value from the DataStore.
      *

@@ -2,7 +2,6 @@ package com.countrydelight.preferencedatastorehelper.utils
 
 object PreferenceFunctionHelper {
 
-
     /**
      * Executes a suspend function within a try-catch block.
      *

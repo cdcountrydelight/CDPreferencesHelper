@@ -1,12 +1,16 @@
 package com.countrydelight.preferencedatastorehelper
 
 import android.content.Context
-import androidx.annotation.Keep
+import androidx.datastore.core.DataMigration
+import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
 import com.countrydelight.preferencedatastorehelper.utils.PreferenceConstantHelper
 import com.countrydelight.preferencedatastorehelper.utils.PreferenceFunctionHelper.preferenceCall
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
@@ -14,9 +18,12 @@ import kotlinx.coroutines.flow.map
 /**
  * Implementation of the IDataStoreManager interface for managing preferences using DataStore.
  */
-class PreferenceDataStoreImpl(
+class PreferenceHelper(
     context: Context,
-    preferenceName: String,
+    preferenceName: String = "${context.applicationContext.packageName}.preferences",
+    corruptionHandler: ReplaceFileCorruptionHandler<Preferences>? = null,
+    produceMigrations: (Context) -> List<DataMigration<Preferences>> = { listOf() },
+    scope: CoroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
     onPreferenceErrorOccurred: ((exception: Exception) -> Unit)? = null
 ) : IDataStoreManager {
 
@@ -25,10 +32,15 @@ class PreferenceDataStoreImpl(
     }
 
     // Define a DataStore property extension for the context
-    private val Context.dataStore by preferencesDataStore(name = preferenceName)
+    private val Context.dataStore by preferencesDataStore(
+        name = preferenceName,
+        corruptionHandler = corruptionHandler,
+        produceMigrations = produceMigrations,
+        scope = scope
+    )
 
     // Initialize the DataStore instance
-    private val dataStore = context.dataStore
+    val dataStore = context.dataStore
 
     /**
      * Retrieves a value from the DataStore.
@@ -61,6 +73,20 @@ class PreferenceDataStoreImpl(
 
 
     /**
+     * Saves multiple key-value pairs to the DataStore in a single transaction.
+     *
+     * @param pairs A vararg of key-value preference pairs to be saved.
+     * @return True if the operation was successful, false otherwise.
+     */
+    override suspend fun putAll(vararg pairs: Preferences.Pair<*>): Boolean = preferenceCall {
+        // Edit the DataStore to save the values associated with the keys
+        dataStore.edit { preferences ->
+            preferences.putAll(*pairs)
+        }
+    } != null
+
+
+    /**
      * Removes a value from the DataStore.
      *
      * @param key The key for the preference.
@@ -85,4 +111,5 @@ class PreferenceDataStoreImpl(
             preferences.clear()
         }
     } != null  // Return true if the operation was successful, false otherwise
+
 }

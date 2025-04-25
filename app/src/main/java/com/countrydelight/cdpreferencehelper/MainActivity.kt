@@ -29,10 +29,11 @@ import com.countrydelight.cdpreferencehelper.preference_helper.PreferenceFunctio
 import com.countrydelight.cdpreferencehelper.preference_helper.PreferenceFunctionHelper.getPreference2
 import com.countrydelight.cdpreferencehelper.preference_helper.PreferenceFunctionHelper.removePreference1
 import com.countrydelight.cdpreferencehelper.preference_helper.PreferenceFunctionHelper.removePreference2
+import com.countrydelight.cdpreferencehelper.preference_helper.PreferenceFunctionHelper.setAllPreferencesAtOnce
 import com.countrydelight.cdpreferencehelper.preference_helper.PreferenceFunctionHelper.setPreference1
 import com.countrydelight.cdpreferencehelper.preference_helper.PreferenceFunctionHelper.setPreference2
 import com.countrydelight.cdpreferencehelper.ui.theme.CDPreferenceHelperTheme
-import com.countrydelight.preferencedatastorehelper.PreferenceDataStoreImpl
+import com.countrydelight.preferencedatastorehelper.PreferenceHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -53,7 +54,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainUI() {
     val context = LocalContext.current
-    var preference: PreferenceDataStoreImpl? by remember {
+    var preference: PreferenceHelper? by remember {
         mutableStateOf(null)
     }
     var preference1Value by remember {
@@ -67,7 +68,7 @@ fun MainUI() {
         launch {
             withContext(Dispatchers.IO) {
                 preference =
-                    PreferenceDataStoreImpl(context, "test_preference") { exception ->
+                    PreferenceHelper(context, "test_preference") { exception ->
                         exception.printStackTrace()
                     }
                 preference1Value = preference?.getPreference1(-1) ?: -1
@@ -110,6 +111,16 @@ fun MainUI() {
                 }
             }, modifier = Modifier.fillMaxWidth()) {
                 Text(text = "Add Value To Preference 2")
+            }
+            SpacerHeight16()
+            OutlinedButton(onClick = {
+                coroutineScope.launch {
+                    preference?.setAllPreferencesAtOnce()
+                    preference2Value = preference?.getPreference2(-1) ?: -1
+                    preference1Value = preference?.getPreference1(-1) ?: -1
+                }
+            }, modifier = Modifier.fillMaxWidth()) {
+                Text(text = "Set all preferences at once")
             }
             SpacerHeight16()
             OutlinedButton(onClick = {
