@@ -40,7 +40,7 @@ class PreferenceHelper(
     )
 
     // Initialize the DataStore instance
-    val dataStore = context.dataStore
+    private val dataStore = context.dataStore
 
     /**
      * Retrieves a value from the DataStore.
@@ -112,4 +112,9 @@ class PreferenceHelper(
         }
     } != null  // Return true if the operation was successful, false otherwise
 
+
+    /**
+     * Returns the data store.
+     */
+    fun getDataStore() = dataStore
 }
