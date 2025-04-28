@@ -15,10 +15,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 
-/**
- * Implementation of the IDataStoreManager interface for managing preferences using DataStore.
- */
-class PreferenceHelper(
+open class PreferenceHelper(
     context: Context,
     preferenceName: String = "${context.applicationContext.packageName}.preferences",
     corruptionHandler: ReplaceFileCorruptionHandler<Preferences>? = null,
@@ -116,5 +113,5 @@ class PreferenceHelper(
     /**
      * Returns the data store.
      */
-    fun getDataStore() = dataStore
+    override fun getDataStore() = dataStore
 }

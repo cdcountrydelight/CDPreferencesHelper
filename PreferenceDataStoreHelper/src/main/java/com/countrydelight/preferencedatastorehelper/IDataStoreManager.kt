@@ -1,5 +1,6 @@
 package com.countrydelight.preferencedatastorehelper
 
+import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 
 /**
@@ -49,4 +50,9 @@ internal interface IDataStoreManager {
      * @return True if the operation was successful, false otherwise.
      */
     suspend fun clearAll(): Boolean
+
+    /**
+     * Returns the data store.
+     */
+    fun getDataStore(): DataStore<Preferences>
 }
