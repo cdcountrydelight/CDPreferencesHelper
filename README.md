@@ -5,6 +5,7 @@
 ![Platform](https://img.shields.io/badge/Platform-Android-green.svg)
 ![API Level](https://img.shields.io/badge/API-21+-blue.svg)
 ![Language](https://img.shields.io/badge/Language-Kotlin-orange.svg)
+[![Preference DataStore Version](https://img.shields.io/badge/PreferenceDataStore-1.1.4-blue.svg)](https://developer.android.com/jetpack/androidx/releases/datastore#version_114)
 [![](https://jitpack.io/v/cdcountrydelight/CDPreferencesHelper.svg)](https://jitpack.io/#cdcountrydelight/CDPreferencesHelper)
 
 
