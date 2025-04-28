@@ -50,8 +50,8 @@ afterEvaluate {
         publications {
             create<MavenPublication>("release") {
                 groupId = "com.github.cdcountrydelight"
-                artifactId = "CD-Preference"
-                version = "1.0.0"
+                artifactId = "CDPreferenceHelper"
+                version = "1.0.1"
                 from(components["release"])
             }
         }
