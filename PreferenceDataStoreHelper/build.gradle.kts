@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("maven-publish")
 }
 
 android {
@@ -42,4 +43,17 @@ dependencies {
     //android test implementation
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                groupId = "com.github.cdcountrydelight"
+                artifactId = "CD-Preference"
+                version = "1.0.0"
+                from(components["release"])
+            }
+        }
+    }
 }
