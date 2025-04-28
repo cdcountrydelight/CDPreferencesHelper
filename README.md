@@ -43,7 +43,7 @@
 
 ## 🚀 Usage Examples
 
-### Initialize PreferenceHelper
+### 🚀 Initialize PreferenceHelper
 
 
 To use the `PreferenceHelper` with default settings, you can create an instance as follows:
@@ -70,7 +70,7 @@ val preferenceHelper = PreferenceHelper(
       // Handle preference errors here (optional)
    })
 ```
-### Creating Preference Keys
+### 📝 Creating Preference Keys
 
 ```kotlin
 object PreferencesKeys {
@@ -78,7 +78,7 @@ object PreferencesKeys {
    val USER_AGE = preferencesKey<Int>("user_age") // Define key for user age
 }
 ```
-### Saving Preferences
+### 💾 Saving Preferences
 
 ```kotlin
 // Save a String value
@@ -89,7 +89,7 @@ preferenceHelper.put(PreferencesKeys.USER_AGE, 30)
 
 ```
 
-### Retrieving Preferences
+### 🔍 Retrieving Preferences
 
 ```kotlin
 // Retrieve a String value with a default value
@@ -99,7 +99,7 @@ val userName: String = preferenceHelper.get(PreferencesKeys.USER_NAME, "Default 
 val userAge: Int = preferenceHelper.get(PreferencesKeys.USER_AGE, 18)
 
 ```
-### Removing Preferences
+### ❌ Removing Preferences
 
 ```kotlin
 // Remove a single preference
@@ -107,7 +107,7 @@ preferenceHelper.remove(PreferencesKeys.USER_NAME)
 
 ```
 
-### Clearing All Preferences
+### 🧹 Clearing All Preferences
 
 ```kotlin
 // Clear all preferences
@@ -115,7 +115,7 @@ preferenceHelper.clearAll()
 
 ```
 
-### Accessing DataStore Object Directly
+### 📂 Accessing DataStore Object Directly
 
 In addition to the methods provided by the `PreferenceHelper`, you can directly access the underlying `DataStore` object using the `getDataStore()` function. This provides full access to the `DataStore` object for advanced use cases, allowing you to interact with the preferences directly if needed.
 
