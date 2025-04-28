@@ -5,6 +5,8 @@
 ![Platform](https://img.shields.io/badge/Platform-Android-green.svg)
 ![API Level](https://img.shields.io/badge/API-21+-blue.svg)
 ![Language](https://img.shields.io/badge/Language-Kotlin-orange.svg)
+[![](https://jitpack.io/v/cdcountrydelight/CDPreferencesHelper.svg)](https://jitpack.io/#cdcountrydelight/CDPreferencesHelper)
+
 
 ## 🚀 Features
 
@@ -35,7 +37,7 @@
 
     ```gradle
     dependencies {
-        implementation ("")
+        implementation ("com.github.cdcountrydelight:CDPreferencesHelper:<latest-version>")
     }
     ```
 
