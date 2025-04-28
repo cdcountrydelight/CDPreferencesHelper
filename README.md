@@ -1,6 +1,6 @@
-# CDPreferenceHelper
+# CD Preference Helper
 
-**CDPreferenceHelper** is a lightweight library designed to simplify working with **DataStore** for storing preferences in Android applications. It provides an easy-to-use API to manage preferences using **DataStore** while supporting features like error handling and migration.
+**CD Preference Helper** is a lightweight library designed to simplify working with **DataStore** for storing preferences in Android applications. It provides an easy-to-use API to manage preferences using **DataStore** while supporting features like error handling and migration.
 
 ![Platform](https://img.shields.io/badge/Platform-Android-green.svg)
 ![API Level](https://img.shields.io/badge/API-21+-blue.svg)
@@ -35,7 +35,7 @@
 
     ```gradle
     dependencies {
-        implementation 'com.github.YOUR_GITHUB_USERNAME:CDPreferenceHelper:VERSION'
+        implementation ("")
     }
     ```
 
@@ -116,3 +116,7 @@ preferenceHelper.clearAll()
 ### Accessing DataStore Object Directly
 
 In addition to the methods provided by the `PreferenceHelper`, you can directly access the underlying `DataStore` object using the `getDataStore()` function. This provides full access to the `DataStore` object for advanced use cases, allowing you to interact with the preferences directly if needed.
+
+✅ **Note**:  
+You **do not** need to add the `androidx.datastore:datastore-preferences` dependency manually to your project.  
+It is already included and exposed by the library, so you can easily access the `DataStore` without any extra setup.
