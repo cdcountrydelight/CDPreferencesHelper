@@ -62,7 +62,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(project(":PreferenceDataStoreHelper"))
+    implementation("com.github.cdcountrydelight:CDPreferencesHelper:1.0.0")
+//    implementation(project(":PreferenceDataStoreHelper"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
