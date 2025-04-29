@@ -2,6 +2,8 @@ package com.countrydelight.preferencedatastorehelper
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 
 /**
  * Interface defining the contract for a DataStore manager.
