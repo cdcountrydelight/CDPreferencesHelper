@@ -127,7 +127,7 @@ open class PreferenceHelper(
      * @param onResponse A lambda function to be called with the retrieved value on the main thread.  This will always be executed, even if an error occurs during retrieval.
      * @param <T> The type of the value associated with the key.
      */
-    fun <T> get(
+    fun <T> getAsync(
         key: Preferences.Key<T>,
         defaultValue: T,
         coroutineScope: CoroutineDispatcher = Dispatchers.IO,
@@ -150,7 +150,7 @@ open class PreferenceHelper(
      * @param onComplete A lambda function to be invoked on the main thread after the operation completes.
      *                   It receives a boolean indicating whether the operation was successful.  May be null.
      */
-    fun <T> put(
+    fun <T> putAsync(
         key: Preferences.Key<T>,
         value: T,
         coroutineScope: CoroutineDispatcher = Dispatchers.IO,
@@ -177,7 +177,7 @@ open class PreferenceHelper(
      * @param onComplete A lambda function that is invoked on the main thread after the operation completes.
      *                   It receives a boolean indicating whether the operation was successful.  Can be null.
      */
-    fun <T> putAll(
+    fun <T> putAllAsync(
         vararg pairs: Preferences.Pair<*>,
         coroutineScope: CoroutineDispatcher = Dispatchers.IO,
         onComplete: ((isSuccessfull: Boolean) -> Unit)? = null
@@ -198,7 +198,7 @@ open class PreferenceHelper(
      * @param onComplete A lambda function to be invoked on the main thread after the removal operation completes.
      *                   It receives a boolean indicating whether the removal was successful.  Can be null.
      */
-    fun <T> remove(
+    fun <T> removeAsync(
         key: Preferences.Key<T>,
         coroutineScope: CoroutineDispatcher = Dispatchers.IO,
         onComplete: ((isSuccessfull: Boolean) -> Unit)? = null
@@ -221,7 +221,7 @@ open class PreferenceHelper(
      * @param onComplete A callback function that is invoked on the main thread after the operation completes.
      *                   The boolean parameter indicates whether the operation was successful.  Can be null.
      */
-    fun clearAll(
+    fun clearAllAsync(
         coroutineScope: CoroutineDispatcher = Dispatchers.IO,
         onComplete: ((isSuccessfull: Boolean) -> Unit)? = null
     ) {
